@@ -3,3 +3,8 @@ main = "index.ts"
 compatibility_date = "2024-03-20"
 workers_dev = true
 compatibility_flags = [ ]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "wordy-db"
+database_id = "a33057b8-d34f-4d9e-83f2-fb23001df7b3"

@@ -4,7 +4,9 @@
 	"description": "Cloudflare Worker for Wordy Bot",
 	"main": "index.ts",
 	"scripts": {
-		"dev": "wrangler dev"
+		"dev": "wrangler dev",
+		"db:new": "wrangler d1 create wordy-db",
+		"db:init": "wrangler d1 execute wordy-db --local --file=./database/schema.sql"
 	},
 	"author": "StarPanda",
 	"license": "MIT",

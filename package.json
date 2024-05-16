@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "db:new": "npm run -w worker db:new",
+    "db:init": "npm run -w worker db:init",
     "dev": "npm run -w bot build && npm run -w worker dev"
   },
   "workspaces": [
