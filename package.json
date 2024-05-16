@@ -2,6 +2,9 @@
   "name": "wordy",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "dev": "npm run -w bot build && npm run -w worker dev"
+  },
   "workspaces": [
     "worker",
     "bot"

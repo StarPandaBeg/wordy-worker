@@ -3,7 +3,9 @@
 	"version": "1.0.0",
 	"description": "Cloudflare Worker for Wordy Bot",
 	"main": "index.ts",
-	"scripts": {},
+	"scripts": {
+		"dev": "wrangler dev"
+	},
 	"author": "StarPanda",
 	"license": "MIT"
 }
