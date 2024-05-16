@@ -1,0 +1,9 @@
+{
+	"name": "wordy-worker",
+	"version": "1.0.0",
+	"description": "Cloudflare Worker for Wordy Bot",
+	"main": "index.ts",
+	"scripts": {},
+	"author": "StarPanda",
+	"license": "MIT"
+}

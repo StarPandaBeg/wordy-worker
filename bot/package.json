@@ -1,0 +1,11 @@
+{
+	"name": "wordy-bot",
+	"version": "1.0.0",
+	"description": "Main module - Wordy bot logic",
+	"main": "index.ts",
+	"scripts": {},
+	"author": "StarPanda",
+	"license": "MIT",
+	"dependencies": {
+	}
+}
