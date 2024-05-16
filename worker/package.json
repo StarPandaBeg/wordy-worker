@@ -7,5 +7,8 @@
 		"dev": "wrangler dev"
 	},
 	"author": "StarPanda",
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": {
+		"@cfworker/web": "^1.14.0"
+	}
 }
