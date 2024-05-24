@@ -12,7 +12,7 @@ class PhotoRepository extends Repository {
 	}
 
 	async addPhotoInfo(data: Photo) {
-		await db.insert(photosSchema).values(data);
+		await db.insert(photosSchema).values(data).onConflictDoNothing({ target: photosSchema.message_id });
 	}
 
 	async hasFile(user_id: number, file_id: string) {
