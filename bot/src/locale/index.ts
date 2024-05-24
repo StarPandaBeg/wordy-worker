@@ -7,7 +7,14 @@ const locale: Record<string, string> = {
 	message_file_not_supported: '🚫 Пока что я не поддерживаю такой формат файлов.\n\nПожалуйста, пришли мне фотографии.',
 };
 
-export const _ = (key: string) => {
-	if (key in locale) return locale[key];
+export const _ = (key: string, replacements?: Record<string, any>) => {
+	if (key in locale) {
+		let val = locale[key];
+		if (!replacements) return val;
+		for (const [key, value] of Object.entries(replacements)) {
+			val = val.replace(`%${key}%`, value);
+		}
+		return val;
+	}
 	throw new Error(`Unknown locale key: ${key}`);
 };
