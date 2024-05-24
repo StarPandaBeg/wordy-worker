@@ -24,7 +24,7 @@ const handler = async (ctx: Context, is_callback: boolean) => {
 		return;
 	}
 
-	const messageText = _('message_newdoc');
+	const messageText = _('message_newdoc', { total: TotalPhotoLimit });
 	await ctx.reply(messageText, { parse_mode: 'MarkdownV2' });
 };
 

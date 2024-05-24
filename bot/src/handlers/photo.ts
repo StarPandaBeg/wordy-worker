@@ -14,7 +14,7 @@ const handler = async (ctx: Context) => {
 
 	const total = await photoRepository.countUploadedFor(ctx.message.from.id);
 	if (total >= TotalPhotoLimit) {
-		const messageText = _('message_file_limit_reached');
+		const messageText = _('message_file_limit_reached', { total: TotalPhotoLimit });
 		await ctx.reply(messageText, { reply_parameters: { message_id: ctx.message.message_id } });
 		return;
 	}
