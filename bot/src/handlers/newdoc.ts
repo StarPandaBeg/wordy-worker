@@ -21,6 +21,7 @@ const handler = async (ctx: Context, is_callback: boolean) => {
 
 	const messageText = _('message_newdoc');
 	if (is_callback) {
+		await ctx.editMessageReplyMarkup(undefined);
 		await ctx.answerCbQuery();
 	}
 	await ctx.reply(messageText, { parse_mode: 'MarkdownV2' });
