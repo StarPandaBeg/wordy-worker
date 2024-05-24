@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `photos_user_id_message_id_unique` ON `photos` (`user_id`,`message_id`);
