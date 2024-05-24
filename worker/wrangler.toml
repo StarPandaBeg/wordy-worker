@@ -8,3 +8,4 @@ compatibility_flags = [ ]
 binding = "DB"
 database_name = "wordy-db"
 database_id = "a33057b8-d34f-4d9e-83f2-fb23001df7b3"
+migrations_dir = "../migrations"

@@ -4,7 +4,8 @@
 	"description": "Main module - Wordy bot logic",
 	"main": "src/index.ts",
 	"scripts": {
-		"build": "webpack -c webpack.config.js"
+		"build": "webpack -c webpack.config.js",
+		"generate-migrations": "drizzle-kit generate"
 	},
 	"author": "StarPanda",
 	"license": "MIT",
@@ -19,5 +20,8 @@
 		"typescript": "^5.4.5",
 		"webpack": "^5.91.0",
 		"webpack-cli": "^5.1.4"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.21.4"
 	}
 }

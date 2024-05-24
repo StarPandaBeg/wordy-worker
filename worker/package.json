@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "wrangler dev",
 		"db:new": "wrangler d1 create wordy-db",
-		"db:init": "wrangler d1 execute wordy-db --local --file=./database/schema.sql"
+		"db:init": "wrangler d1 migrations apply wordy-db --local"
 	},
 	"author": "StarPanda",
 	"license": "MIT",
