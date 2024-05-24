@@ -1,4 +1,4 @@
-import { InferInsertModel, count, eq } from 'drizzle-orm';
+import { InferInsertModel, and, count, eq } from 'drizzle-orm';
 import { db } from '../database';
 import { Repository } from './repository';
 import { photos as photosSchema } from '../database/schema';
@@ -13,6 +13,14 @@ class PhotoRepository extends Repository {
 
 	async addPhotoInfo(data: Photo) {
 		await db.insert(photosSchema).values(data);
+	}
+
+	async hasFile(user_id: number, file_id: string) {
+		const result = await db
+			.select({ value: count() })
+			.from(photosSchema)
+			.where(and(eq(photosSchema.user_id, user_id), eq(photosSchema.file_id, file_id)));
+		return result[0].value > 0;
 	}
 }
 

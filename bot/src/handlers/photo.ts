@@ -20,6 +20,14 @@ const handler = async (ctx: Context) => {
 	}
 
 	const fileId = getWithMaximumResolution(photos).file_id;
+
+	const hasFile = await photoRepository.hasFile(ctx.message.from.id, fileId);
+	if (hasFile) {
+		const messageText = _('message_file_duplicate');
+		await ctx.reply(messageText, { reply_parameters: { message_id: ctx.message.message_id } });
+		return;
+	}
+
 	await photoRepository.addPhotoInfo({ user_id: ctx.message.from.id, message_id: ctx.message.message_id, file_id: fileId });
 
 	const messageText = _('message_file_added', { current: total + 1, total: TotalPhotoLimit });
