@@ -1,11 +1,25 @@
-import { Context, Telegraf } from 'telegraf';
+import { Context, Markup, Telegraf } from 'telegraf';
 import { Handler } from '../bot';
 import { _ } from '../locale';
-import { CallbackNewDoc } from '../constants';
+import { CallbackClear, CallbackNewDoc, TotalPhotoLimit } from '../constants';
+import photoRepository from '../repository/photos';
 
 const handler = async (ctx: Context, is_callback: boolean) => {
-	const messageText = _('message_newdoc');
+	const from = is_callback ? ctx.callbackQuery.from : ctx.message.from;
+	const total = await photoRepository.countUploadedFor(from.id);
 
+	if (total > 0) {
+		const messageText = _('message_newdoc_already', { current: total, total: TotalPhotoLimit });
+		const buttonText = _('button_clear');
+		const keyboard = Markup.inlineKeyboard([
+			[{ text: buttonText, callback_data: CallbackClear }], //
+		]);
+
+		await ctx.reply(messageText, { reply_markup: keyboard.reply_markup });
+		return;
+	}
+
+	const messageText = _('message_newdoc');
 	if (is_callback) {
 		await ctx.answerCbQuery();
 	}
