@@ -8,6 +8,11 @@ const handler = async (ctx: Context, is_callback: boolean) => {
 	const from = is_callback ? ctx.callbackQuery.from : ctx.message.from;
 	const total = await photoRepository.countUploadedFor(from.id);
 
+	if (is_callback) {
+		await ctx.editMessageReplyMarkup(undefined);
+		await ctx.answerCbQuery();
+	}
+
 	if (total > 0) {
 		const messageText = _('message_newdoc_already', { current: total, total: TotalPhotoLimit });
 		const buttonText = _('button_clear');
@@ -20,10 +25,6 @@ const handler = async (ctx: Context, is_callback: boolean) => {
 	}
 
 	const messageText = _('message_newdoc');
-	if (is_callback) {
-		await ctx.editMessageReplyMarkup(undefined);
-		await ctx.answerCbQuery();
-	}
 	await ctx.reply(messageText, { parse_mode: 'MarkdownV2' });
 };
 
