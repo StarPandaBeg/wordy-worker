@@ -1,4 +1,4 @@
-import { InferInsertModel, and, count, eq } from 'drizzle-orm';
+import { InferInsertModel, and, asc, count, eq } from 'drizzle-orm';
 import { db } from '../database';
 import { Repository } from './repository';
 import { photos as photosSchema } from '../database/schema';
@@ -29,6 +29,11 @@ class PhotoRepository extends Repository {
 			.where(eq(photosSchema.user_id, user_id))
 			.returning({ deletedId: photosSchema.id });
 		return res.length;
+	}
+
+	async getFor(user_id: number) {
+		const res = await db.select().from(photosSchema).where(eq(photosSchema.user_id, user_id)).orderBy(asc(photosSchema.message_id));
+		return res;
 	}
 }
 
