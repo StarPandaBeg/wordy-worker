@@ -9,8 +9,11 @@ const handler = async (ctx: Context, is_callback: boolean) => {
 	const total = await photoRepository.countUploadedFor(from.id);
 
 	if (is_callback) {
-		await ctx.editMessageReplyMarkup(undefined);
-		await ctx.answerCbQuery();
+		// Telegram sometimes repeats request and it leads to 400 errors - reply markup have been already removed
+		try {
+			await ctx.editMessageReplyMarkup(null);
+			await ctx.answerCbQuery();
+		} catch (e) {}
 	}
 
 	if (total > 0) {
